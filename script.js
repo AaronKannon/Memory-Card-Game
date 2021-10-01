@@ -15,7 +15,6 @@ let shuffleArray = (array) => {
     return array;
 }
 
-// Cria ordem aleatoria de cores
 let shuffleOrder = () => {
     newOrder = shuffleArray(order);
     clickedOrder = [];
@@ -41,7 +40,6 @@ let hideAllColors = (cards) => {
     }
 };
 
-// Acende a proxima cor
 let showColor = (element) => {
     if (element.classList.item(2) == 'hide') {
         element.classList.remove('hide');
@@ -80,21 +78,9 @@ let showColor = (element) => {
     }
 };
 
-let clearOldLevel = () => {
-    for (let i = 0; i < cards.length; i++) {
-        let elementColor = createColorElement(order[i]);
-        cards[i].classList.remove(elementColor);
-        cards[i].classList.remove('hide');
-    }
-    newOrder = [];
-    checkPair = 0;
-    checkColor = '';
-    count = 0;
-};
-
-// Checa se os botões clickados são os mesmos da ordem gerada no jogo
 let checkCard = (color) => {
     checkPair++;
+    count++;
     if (checkPair == 1) {
         checkColor = color;
     }
@@ -105,19 +91,18 @@ let checkCard = (color) => {
         checkColor = '';
         checkPair = 0;
     }
-    count++;
     if (count == 8) {
-        alert(`Pontuação: ${score}\nVocê acertou" Iniciando próximo nível!`);
-        nextLevel();
+        setTimeout(() => {
+            alert(`Pontuação: ${score}\nVocê acertou" Iniciando próximo nível!`);
+            nextLevel();
+        }, 100);
     }
 };
 
-//Função para o clique do usuario
 let click = (element) => {
     showColor(element);
 };
 
-//Função que retorna a cor
 let createColorElement = (color) => {
     if (color == 0) {
         return 'green';
@@ -130,7 +115,18 @@ let createColorElement = (color) => {
     }
 };
 
-//Função para proximo nível do jogo
+let clearOldLevel = () => {
+    for (let i = 0; i < cards.length; i++) {
+        let elementColor = createColorElement(order[i]);
+        cards[i].classList.remove(elementColor);
+        cards[i].classList.remove('hide');
+    }
+    newOrder = [];
+    checkPair = 0;
+    checkColor = '';
+    count = 0;
+};
+
 let nextLevel = () => {
     score++;
 
@@ -138,7 +134,6 @@ let nextLevel = () => {
     shuffleOrder();
 };
 
-//Função para game over
 let gameOver = () => {
     alert(`Pontuação: ${score}!\nVocê perdeu o jogo\nClique em OK para iniciar o jogo`);
 
@@ -147,7 +142,6 @@ let gameOver = () => {
     playGame();
 };
 
-//Função para começar o jogo
 let playGame = () => {
     alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
     score = 0;
