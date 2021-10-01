@@ -1,4 +1,5 @@
 let order = [0, 0, 1, 1, 2, 2, 3, 3];
+let divOrder = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'];
 let newOrder = [];
 let score = 0;
 let checkPair = 0;
@@ -45,34 +46,7 @@ let showColor = (element) => {
         element.classList.remove('hide');
         let position = element.classList.item(1);
         let color;
-        switch (position) {
-            case "p1":
-                color = createColorElement(newOrder[0]);
-                break;
-            case "p2":
-                color = createColorElement(newOrder[1]);
-                break;
-            case "p3":
-                color = createColorElement(newOrder[2]);
-                break;
-            case "p4":
-                color = createColorElement(newOrder[3]);
-                break;
-            case "p5":
-                color = createColorElement(newOrder[4]);
-                break;
-            case "p6":
-                color = createColorElement(newOrder[5]);
-                break;
-            case "p7":
-                color = createColorElement(newOrder[6]);
-                break;
-            case "p8":
-                color = createColorElement(newOrder[7]);
-                break;
-            default:
-                console.log(`Sorry, we are out of ${position}.`);
-        }
+        color = createColorElement(newOrder[divOrder.indexOf(position)]);
         element.classList.add(color);
         checkCard(color);
     }
@@ -141,6 +115,7 @@ let gameOver = () => {
 
     playGame();
 };
+
 
 let playGame = () => {
     alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
