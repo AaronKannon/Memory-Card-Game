@@ -45,8 +45,7 @@ let showColor = (element) => {
     if (element.classList.item(2) == 'hide') {
         element.classList.remove('hide');
         let position = element.classList.item(1);
-        let color;
-        color = createColorElement(newOrder[divOrder.indexOf(position)]);
+        let color = createColorElement(newOrder[divOrder.indexOf(position)]);
         element.classList.add(color);
         checkCard(color);
     }
@@ -67,7 +66,7 @@ let checkCard = (color) => {
     }
     if (count == 8) {
         setTimeout(() => {
-            alert(`Pontuação: ${score}\nVocê acertou" Iniciando próximo nível!`);
+            alert(`Score: ${score}\nYou won! Initiating the next round`);
             nextLevel();
         }, 100);
     }
@@ -109,7 +108,7 @@ let nextLevel = () => {
 };
 
 let gameOver = () => {
-    alert(`Pontuação: ${score}!\nVocê perdeu o jogo\nClique em OK para iniciar o jogo`);
+    alert(`Score: ${score}!\nYou lost\nPress OK to begin again`);
 
     clearOldLevel();
 
@@ -118,7 +117,7 @@ let gameOver = () => {
 
 
 let playGame = () => {
-    alert('Bem vindo ao Gênesis! Iniciando novo jogo!');
+    alert('Welcome to the Memory Card Game\n Press OK to begin!');
     score = 0;
 
     nextLevel();
